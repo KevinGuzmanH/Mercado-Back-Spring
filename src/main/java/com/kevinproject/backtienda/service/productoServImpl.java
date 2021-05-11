@@ -28,7 +28,12 @@ public class productoServImpl implements productoServ {
     }
 
     @Override
-    public void guardar(producto p) {
-        productoRep.save(p);
+    public producto guardar(producto p) {
+        return productoRep.save(p);
+    }
+
+    @Override
+    public producto edit(producto p) {
+        return productoRep.save(p);
     }
 }

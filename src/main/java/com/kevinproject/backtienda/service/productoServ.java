@@ -11,5 +11,6 @@ public interface productoServ  {
     List<producto> listarTodo();
     Optional<producto> listarPorId(Integer id);
     void borrarPorId(Integer id);
-    void guardar(producto p);
+    producto guardar(producto p);
+    producto edit(producto p);
 }
