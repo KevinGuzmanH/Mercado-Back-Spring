@@ -45,4 +45,18 @@ public class productoServImpl implements productoServ {
         }
         return balanceTotal;
     }
+
+    @Override
+    public void abastecerProducto(int id, Integer nPDTS, double costoU) {
+        Optional<producto> p = productoRep.findById(id);
+        double costo = nPDTS * costoU;
+        double valance = p.get().getBalance() - costo;
+        p.get().setBalance(valance);
+        int exis = nPDTS;
+        exis += p.get().getExistencias();
+        p.get().setExistencias(exis);
+        productoRep.save(p.get());
+    }
+
+
 }

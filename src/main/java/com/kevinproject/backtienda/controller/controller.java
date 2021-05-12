@@ -5,7 +5,6 @@ import com.kevinproject.backtienda.service.productoServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +41,9 @@ public class controller {
     public int balancetotal(){
         return productoServ.balanceTienda();
     }
-
+    @PutMapping(path = "/supply/{unidades}/value{valorunidad}")
+    public void supplyProduct(@PathVariable(name = "unidades")int unds,@PathVariable(name = "valorunidad")double valorU,@RequestBody producto producto){
+        int id = producto.getId();
+        productoServ.abastecerProducto(id,unds,valorU);
+    }
 }
