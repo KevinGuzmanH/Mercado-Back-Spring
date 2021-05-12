@@ -13,4 +13,5 @@ public interface productoServ  {
     void borrarPorId(Integer id);
     producto guardar(producto p);
     producto edit(producto p);
+    int balanceTienda();
 }

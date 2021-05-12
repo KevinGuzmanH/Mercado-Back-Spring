@@ -36,4 +36,13 @@ public class productoServImpl implements productoServ {
     public producto edit(producto p) {
         return productoRep.save(p);
     }
+
+    public int balanceTienda(){
+        int balanceTotal = 0;
+        List<producto> productos= productoRep.findAll();
+        for (int i=0; i<productos.size() ;i++){
+            balanceTotal+= productos.get(i).getBalance();
+        }
+        return balanceTotal;
+    }
 }

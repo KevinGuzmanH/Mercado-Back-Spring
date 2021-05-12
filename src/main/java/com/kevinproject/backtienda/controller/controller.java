@@ -34,4 +34,13 @@ public class controller {
     public producto actualizar(@RequestBody producto P){
         return productoServ.edit(P);
     }
+    @DeleteMapping(path = "/delete/{id}")
+    public void deletebyid(@PathVariable(name = "id",required = true)int id){
+        productoServ.borrarPorId(id);
+    }
+    @GetMapping(path = "/balancetotal")
+    public int balancetotal(){
+        return productoServ.balanceTienda();
+    }
+
 }
