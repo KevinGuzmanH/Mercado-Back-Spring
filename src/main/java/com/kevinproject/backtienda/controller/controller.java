@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "https://dientabacksp.netlify.app")
+@CrossOrigin(origins = "https://tientabacksp.netlify.app")
 @RestController
 @RequestMapping(path = "/tienda")
 public class controller {
