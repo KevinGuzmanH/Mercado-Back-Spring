@@ -46,4 +46,8 @@ public class controller {
         int id = producto.getId();
         productoServ.abastecerProducto(id,unds,valorU);
     }
+    @GetMapping(path = "/stock")
+    public int getStock(){
+        return productoServ.stock();
+    }
 }

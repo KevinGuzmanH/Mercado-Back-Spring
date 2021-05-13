@@ -47,6 +47,16 @@ public class productoServImpl implements productoServ {
     }
 
     @Override
+    public int stock() {
+        int existencias = 0;
+        List<producto> productos= productoRep.findAll();
+        for (int i=0; i<productos.size() ;i++){
+            existencias+= productos.get(i).getExistencias();
+        }
+        return existencias;
+    }
+
+    @Override
     public void abastecerProducto(int id, Integer nPDTS, double costoU) {
         Optional<producto> p = productoRep.findById(id);
         double costo = nPDTS * costoU;

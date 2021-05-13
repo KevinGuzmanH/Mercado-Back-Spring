@@ -14,6 +14,7 @@ public interface productoServ  {
     producto guardar(producto p);
     producto edit(producto p);
     int balanceTienda();
+    int stock();
     void abastecerProducto(int id, Integer nPDTS,double costoU);
 
 }
