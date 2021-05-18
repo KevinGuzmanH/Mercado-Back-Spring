@@ -37,15 +37,7 @@ public class productoServImpl implements productoServ {
         return productoRep.save(p);
     }
 
-    @Override
-    public List<producto> findByCategoria(String categoria) {
-        return productoRep.findByCategoria(categoria);
-    }
 
-    @Override
-    public List<producto> findByOfertaIsTrue() {
-        return productoRep.findByOfertaIsTrue();
-    }
 
 
 }

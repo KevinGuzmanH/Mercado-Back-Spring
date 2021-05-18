@@ -13,6 +13,5 @@ public interface productoServ  {
     void borrarPorId(Integer id);
     producto guardar(producto p);
     producto edit(producto p);
-    List<producto> findByCategoria(String categoria);
-    List<producto> findByOfertaIsTrue();
+
 }

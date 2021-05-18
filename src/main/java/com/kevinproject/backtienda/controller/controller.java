@@ -21,14 +21,7 @@ public class controller {
         return productoServ.listarTodo();
     }
 
-    @GetMapping(path = "/categoria/{categoria}")
-    public List<producto> save(@PathVariable(name = "categoria",required = true)String categoria){
-       return productoServ.findByCategoria(categoria);
-    }
-    @GetMapping(path = "/ofertas}")
-    public List<producto> save(){
-        return productoServ.findByOfertaIsTrue();
-    }
+
     @GetMapping(path = "/getbyid/{id}")
     public Optional<producto> getbyid(@PathVariable(required = true, name = "id")int id ){
         return productoServ.listarPorId(id);
