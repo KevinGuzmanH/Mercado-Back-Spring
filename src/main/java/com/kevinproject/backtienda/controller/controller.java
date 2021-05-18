@@ -15,7 +15,7 @@ public class controller {
 
     @Autowired
     productoServ productoServ;
-        //asdad
+    //asdadpppapapa
     @GetMapping(path = "/productlist")
     public List<producto>productoList(){
         return productoServ.listarTodo();
