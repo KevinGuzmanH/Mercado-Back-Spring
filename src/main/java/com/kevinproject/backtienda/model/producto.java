@@ -17,8 +17,27 @@ public class producto {
     @Column(nullable = false)
     private int Existencias;
     @Column(nullable = false)
-    private double Balance;
+    private String Categoria;
+    @Column(nullable = false)
+    private String Imagen;
+    @Column(nullable = false)
+    private Boolean Oferta;
+    @Column(nullable = false)
+    private String Descripcion;
 
+    public String getCategoria() {return Categoria;}
+
+    public void setCategoria(String categoria) {
+        Categoria = categoria;
+    }
+
+    public String getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(String imagen) {
+        Imagen = imagen;
+    }
 
     public int getId() {
         return Id;
@@ -52,11 +71,4 @@ public class producto {
         Existencias = existencias;
     }
 
-    public double getBalance() {
-        return Balance;
-    }
-
-    public void setBalance(double balance) {
-        Balance = balance;
-    }
 }

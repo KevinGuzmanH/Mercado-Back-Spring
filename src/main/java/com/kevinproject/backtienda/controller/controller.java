@@ -8,22 +8,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "https://tientabacksp.netlify.app")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "/tienda")
 public class controller {
 
     @Autowired
     productoServ productoServ;
-
-    @GetMapping(path = "/tabla")
+        //asdad
+    @GetMapping(path = "/productlist")
     public List<producto>productoList(){
         return productoServ.listarTodo();
     }
 
-    @PostMapping(path = "/guardar")
-    public producto save(@RequestBody producto P){
-       return productoServ.guardar(P);
+    @GetMapping(path = "/categoria/{categoria}")
+    public List<producto> save(@PathVariable(name = "categoria",required = true)String categoria){
+       return productoServ.findByCategoria(categoria);
+    }
+    @GetMapping(path = "/ofertas}")
+    public List<producto> save(){
+        return productoServ.findByOfertaIsTrue();
     }
     @GetMapping(path = "/getbyid/{id}")
     public Optional<producto> getbyid(@PathVariable(required = true, name = "id")int id ){
@@ -33,21 +37,10 @@ public class controller {
     public producto actualizar(@RequestBody producto P){
         return productoServ.edit(P);
     }
+
     @DeleteMapping(path = "/delete/{id}")
     public void deletebyid(@PathVariable(name = "id",required = true)int id){
         productoServ.borrarPorId(id);
     }
-    @GetMapping(path = "/balancetotal")
-    public int balancetotal(){
-        return productoServ.balanceTienda();
-    }
-    @PutMapping(path = "/supply/{unidades}/value{valorunidad}")
-    public void supplyProduct(@PathVariable(name = "unidades")int unds,@PathVariable(name = "valorunidad")double valorU,@RequestBody producto producto){
-        int id = producto.getId();
-        productoServ.abastecerProducto(id,unds,valorU);
-    }
-    @GetMapping(path = "/stock")
-    public int getStock(){
-        return productoServ.stock();
-    }
+
 }

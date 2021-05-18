@@ -13,8 +13,6 @@ public interface productoServ  {
     void borrarPorId(Integer id);
     producto guardar(producto p);
     producto edit(producto p);
-    int balanceTienda();
-    int stock();
-    void abastecerProducto(int id, Integer nPDTS,double costoU);
-
+    List<producto> findByCategoria(String categoria);
+    List<producto> findByOfertaIsTrue();
 }

@@ -37,35 +37,14 @@ public class productoServImpl implements productoServ {
         return productoRep.save(p);
     }
 
-    public int balanceTienda(){
-        int balanceTotal = 0;
-        List<producto> productos= productoRep.findAll();
-        for (int i=0; i<productos.size() ;i++){
-            balanceTotal+= productos.get(i).getBalance();
-        }
-        return balanceTotal;
+    @Override
+    public List<producto> findByCategoria(String categoria) {
+        return productoRep.findByCategoria(categoria);
     }
 
     @Override
-    public int stock() {
-        int existencias = 0;
-        List<producto> productos= productoRep.findAll();
-        for (int i=0; i<productos.size() ;i++){
-            existencias+= productos.get(i).getExistencias();
-        }
-        return existencias;
-    }
-
-    @Override
-    public void abastecerProducto(int id, Integer nPDTS, double costoU) {
-        Optional<producto> p = productoRep.findById(id);
-        double costo = nPDTS * costoU;
-        double valance = p.get().getBalance() - costo;
-        p.get().setBalance(valance);
-        int exis = nPDTS;
-        exis += p.get().getExistencias();
-        p.get().setExistencias(exis);
-        productoRep.save(p.get());
+    public List<producto> findByOfertaIsTrue() {
+        return productoRep.findByOfertaIsTrue();
     }
 
 
