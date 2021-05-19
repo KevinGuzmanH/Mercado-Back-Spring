@@ -21,7 +21,6 @@ public class controller {
         return productoServ.listarTodo();
     }
 
-
     @GetMapping(path = "/getbyid/{id}")
     public Optional<producto> getbyid(@PathVariable(required = true, name = "id")int id ){
         return productoServ.listarPorId(id);

@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "producto")
+@Table(name = "productos")
 public class producto {
     @Id
     private int Id;
@@ -24,6 +24,22 @@ public class producto {
     private Boolean Oferta;
     @Column(nullable = false)
     private String Descripcion;
+
+    public Boolean getOferta() {
+        return Oferta;
+    }
+
+    public void setOferta(Boolean oferta) {
+        Oferta = oferta;
+    }
+
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        Descripcion = descripcion;
+    }
 
     public String getCategoria() {return Categoria;}
 

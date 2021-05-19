@@ -1,6 +1,7 @@
 package com.kevinproject.backtienda.service;
 
 import com.kevinproject.backtienda.model.producto;
+import com.kevinproject.backtienda.repository.productoRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class productoServImpl implements productoServ {
+
     @Autowired
     com.kevinproject.backtienda.repository.productoRep productoRep;
 
@@ -36,8 +38,5 @@ public class productoServImpl implements productoServ {
     public producto edit(producto p) {
         return productoRep.save(p);
     }
-
-
-
 
 }
