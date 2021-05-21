@@ -39,4 +39,9 @@ public class productoServImpl implements productoServ {
         return productoRep.save(p);
     }
 
+    @Override
+    public List<producto> getOfertas() {
+        return productoRep.findByOfertaIsTrue();
+    }
+
 }

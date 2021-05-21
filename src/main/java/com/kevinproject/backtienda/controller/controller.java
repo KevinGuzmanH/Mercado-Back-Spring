@@ -35,4 +35,8 @@ public class controller {
         productoServ.borrarPorId(id);
     }
 
+    @GetMapping(path = "/offers")
+    public List<producto> gerOffers(){
+        return productoServ.getOfertas();
+    }
 }

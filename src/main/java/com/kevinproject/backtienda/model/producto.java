@@ -21,16 +21,16 @@ public class producto {
     @Column(nullable = false)
     private String Imagen;
     @Column(nullable = false)
-    private Boolean Oferta;
+    private Boolean oferta;
     @Column(nullable = false)
     private String Descripcion;
 
     public Boolean getOferta() {
-        return Oferta;
+        return oferta;
     }
 
     public void setOferta(Boolean oferta) {
-        Oferta = oferta;
+        oferta = oferta;
     }
 
     public String getDescripcion() {
