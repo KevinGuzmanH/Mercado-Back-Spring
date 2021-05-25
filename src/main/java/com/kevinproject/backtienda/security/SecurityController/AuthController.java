@@ -1,5 +1,7 @@
 package com.kevinproject.backtienda.security.SecurityController;
 
+import com.kevinproject.backtienda.model.producto;
+import com.kevinproject.backtienda.repository.productoRep;
 import com.kevinproject.backtienda.security.SecurityDto.JwtDto;
 import com.kevinproject.backtienda.security.SecurityDto.LoginUsuario;
 import com.kevinproject.backtienda.security.SecurityDto.NuevoUsuario;
@@ -40,6 +42,8 @@ public class AuthController {
     RolServ rolServ;
     @Autowired
     JwtProvider jwtProvider;
+    @Autowired
+    com.kevinproject.backtienda.repository.productoRep productoRep;
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsario, BindingResult bindingResult){
@@ -73,6 +77,26 @@ public class AuthController {
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
+    }
+
+    @PutMapping("/addToCar/{nombreUsuario}")
+    public ResponseEntity<?> addToCar(@Valid @RequestBody producto producto,BindingResult bindingResult,@PathVariable(name = "nombreUsuario")String nombreUsuario) {
+        if (bindingResult.hasErrors())
+        {
+            return new ResponseEntity("Error en campos del producto",HttpStatus.BAD_REQUEST);
+        }
+        Usuario usuario = usuarioServ.getByNombreUsuario(nombreUsuario).get();
+       Set<producto> productos = usuario.getProductos();
+       productos.add(producto);
+       usuario.setProductos(productos);
+       usuarioServ.save(usuario);
+       return new ResponseEntity("Producto añadido",HttpStatus.OK);
+    }
+
+    @GetMapping("/car/{nombreUsuario}")
+    public Set<producto> getProductsInCar(@PathVariable(name = "nombreUsuario")String nombreUsuario){
+        Usuario usuario = usuarioServ.getByNombreUsuario(nombreUsuario).get();
+        return usuario.getProductos();
     }
 
 }

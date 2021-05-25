@@ -22,7 +22,7 @@ public class JwtProvider {
     public String generarTkn(Authentication authentication){
         MainUser mainUser = (MainUser) authentication.getPrincipal();
         return Jwts.builder().setSubject(mainUser.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime() + expiration * 1000))
-                .signWith(SignatureAlgorithm.ES512,secret).compact();
+                .signWith(SignatureAlgorithm.HS256,secret).compact();
     }
 
     public String getnombreUsuarioFromTkn(String token){

@@ -1,5 +1,6 @@
 package com.kevinproject.backtienda.security.SecurityEntity;
 
+import com.kevinproject.backtienda.model.producto;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -21,10 +22,15 @@ public class Usuario {
     @NotNull
     private String password;
     @NotNull
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Usuario_Rol", joinColumns = @JoinColumn(name = "Usuario_ID"),
             inverseJoinColumns = @JoinColumn(name = "Rol_ID"))
     private Set<Rol> roles = new HashSet<>();
+    @NotNull
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "Usuario_Productos", joinColumns = @JoinColumn(name = "Usuario_ID"),
+            inverseJoinColumns = @JoinColumn(name = "Productos_ID"))
+    private Set<producto> productos = new HashSet<>();
 
     public Usuario(String nombre, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
@@ -82,5 +88,13 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    public Set<producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Set<producto> productos) {
+        this.productos = productos;
     }
 }
