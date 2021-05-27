@@ -33,11 +33,6 @@ public class controller {
     public Optional<producto> getbyid(@PathVariable(required = true, name = "id")int id ){
         return productoServ.listarPorId(id);
     }
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping(path = "/updateProduct")
-    public producto actualizar(@RequestBody producto P){
-        return productoServ.edit(P);
-    }
 
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<?> deletebyid(@PathVariable(name = "id",required = true)int id){

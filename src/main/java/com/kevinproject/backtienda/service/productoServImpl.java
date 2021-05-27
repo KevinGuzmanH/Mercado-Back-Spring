@@ -1,7 +1,6 @@
 package com.kevinproject.backtienda.service;
 
 import com.kevinproject.backtienda.model.producto;
-import com.kevinproject.backtienda.repository.productoRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
