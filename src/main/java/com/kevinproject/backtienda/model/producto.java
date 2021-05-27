@@ -14,7 +14,7 @@ public class producto {
     @Column(nullable = false)
     private int Existencias;
     @Column(nullable = false)
-    private String Categoria;
+    private String categoria;
     @Column(nullable = false)
     private String Imagen;
     @Column(nullable = false)
@@ -38,10 +38,10 @@ public class producto {
         Descripcion = descripcion;
     }
 
-    public String getCategoria() {return Categoria;}
+    public String getCategoria() {return categoria;}
 
     public void setCategoria(String categoria) {
-        Categoria = categoria;
+        categoria = categoria;
     }
 
     public String getImagen() {

@@ -14,4 +14,5 @@ public interface productoServ  {
     producto guardar(producto p);
     producto edit(producto p);
     List<producto> getOfertas();
+    List<producto> getbyCategoria(String categoria);
 }

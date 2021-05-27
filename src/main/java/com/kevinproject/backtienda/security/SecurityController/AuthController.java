@@ -1,5 +1,6 @@
 package com.kevinproject.backtienda.security.SecurityController;
 
+import com.kevinproject.backtienda.model.mensaje;
 import com.kevinproject.backtienda.model.producto;
 import com.kevinproject.backtienda.repository.productoRep;
 import com.kevinproject.backtienda.security.SecurityDto.JwtDto;
@@ -51,10 +52,10 @@ public class AuthController {
             return new ResponseEntity("Datos Invalidos Reintente Por Favor", HttpStatus.BAD_REQUEST);
         }
         if (usuarioServ.existsByNombreUsuario(nuevoUsario.getNombreUsuario())) {
-            return new ResponseEntity("Ese Nombre Ya Esta En Uso", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Ese Nombre Ya Está En Uso", HttpStatus.BAD_REQUEST);
         }
         if (usuarioServ.existsByEmail(nuevoUsario.getEmail())) {
-            return new ResponseEntity("Ese Email Ya Esta En Uso", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("Ese Email Ya Está En Uso", HttpStatus.BAD_REQUEST);
         }
         Usuario usuario= new Usuario(nuevoUsario.getNombre(),nuevoUsario.getNombreUsuario(),nuevoUsario.getEmail(),passwordEncoder.encode(nuevoUsario.getPassword()));
         Set<Rol> roles = new HashSet<>();
@@ -91,6 +92,17 @@ public class AuthController {
        usuario.setProductos(productos);
        usuarioServ.save(usuario);
        return new ResponseEntity("Producto añadido",HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deletefromcar/{nombreusuario}/{productoid}")
+    public ResponseEntity<?> deleteFromCar(@PathVariable(name = "productoid")int productoid,@PathVariable(name = "nombreusuario")String nombreUsuario) {
+        Usuario usuario = usuarioServ.getByNombreUsuario(nombreUsuario).get();
+        Set<producto> productos = usuario.getProductos();
+        producto producto = productoRep.findById(productoid).get();
+        productos.remove(producto);
+        usuario.setProductos(productos);
+        usuarioServ.save(usuario);
+        return new ResponseEntity("Producto Eliminado",HttpStatus.OK);
     }
 
     @GetMapping("/car/{nombreUsuario}")

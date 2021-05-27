@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface productoRep extends JpaRepository<producto,Integer> {
 
     List<producto> findByOfertaIsTrue();
+    List<producto> findByCategoria(String categoria);
 }

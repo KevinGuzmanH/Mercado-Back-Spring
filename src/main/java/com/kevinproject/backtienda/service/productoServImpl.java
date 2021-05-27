@@ -44,4 +44,9 @@ public class productoServImpl implements productoServ {
         return productoRep.findByOfertaIsTrue();
     }
 
+    @Override
+    public List<producto> getbyCategoria(String categoria) {
+        return productoRep.findByCategoria(categoria);
+    }
+
 }
